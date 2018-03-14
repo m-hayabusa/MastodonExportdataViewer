@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>Mastodonでエクスポートしたデータを読み込むやつ</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <script src="index.js"></script>
+</head>
+<body>
+    <form name="main" class="pure-form">
+        <fieldset>
+            <label class ="pure-button">
+                <span id="fileName">Select File</span>
+                <input type="file" style="display:none;" id="files" name="files[]">
+            </label>
+            <button id="ButtonParse" type="button" class="pure-button pure-button-primary" onclick="load_json();">Parse</button>
+        </fieldset>
+    </form>
+    <form class="pure-form">
+        <div id="selector" class="pure-button-group"></div>
+    </form>
+
+    <table id="list" class="pure-table pure-table-bordered">
+
+    </table>
+    <script>
+        document.getElementById('files').addEventListener('change', function(){
+            var str = (document.getElementById('files').files[0].name || "Select File");
+            document.getElementById('fileName').innerHTML = str;
+            if (str === "Select File") {
+                // document.getElementById('ButtonParse').classList.add("pure-button-disabled");
+            } else {
+                load_json();
+            }
+        }, false);
+    </script>
+</body>
+</html>
